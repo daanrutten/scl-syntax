@@ -1,0 +1,26 @@
+{
+    "name": "scl",
+    "displayName": "SCL",
+    "description": "Structured Conversation Language",
+    "version": "0.0.1",
+    "publisher": "daanrutten",
+    "engines": {
+        "vscode": "^1.27.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "scl",
+            "aliases": ["Structured Conversation Language", "scl"],
+            "extensions": [".txt"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "scl",
+            "scopeName": "source.scl",
+            "path": "./syntaxes/scl.tmLanguage"
+        }]
+    }
+}

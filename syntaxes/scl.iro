@@ -1,0 +1,216 @@
+name                   = scl
+file_extensions []     = txt;
+
+__variable  \= [_a-zA-Z0-9]+ 
+__number    \= \d+(?:\.\d*)?
+
+styles [] {
+
+.comment : style {
+   textmate_scope = comment.line.number-sign
+}
+
+.text : style {
+   textmate_scope = text
+}
+
+.option.text : style {
+   textmate_scope = string.unquoted
+}
+
+.keyword : style {
+   textmate_scope = keyword.control
+}
+
+.keyword.operator : style {
+   textmate_scope = keyword.operator
+}
+
+.variable : style {
+   textmate_scope = variable.other
+}
+
+.date : style {
+   textmate_scope = constant.character
+}
+
+.string : style {
+   textmate_scope = string.quoted
+}
+
+.number : style {
+   textmate_scope = constant.numeric
+}
+
+.punctuation : style {
+   textmate_scope = punctuation
+}
+
+.illegal : style {
+   textmate_scope = invalid.illegal
+}
+
+}
+
+contexts [] {
+
+main : context {
+   : inline_push {
+      regex    \= (^BLOCK:\s*)($${__variable})
+      styles [] = .keyword, .variable;
+      : eol_pop {}
+      : include "illegal" ;
+   }
+   
+   : inline_push {
+      regex    \= (---)
+      styles [] = .punctuation;
+      : pop {
+         regex    \= (---)
+         styles [] = .punctuation;
+      }
+      : include "block" ;
+   }
+   
+   : include "comment" ;
+   : include "illegal" ;
+}
+
+block : context {
+   : inline_push {
+      regex    \= (^\?)
+      styles [] = .punctuation;
+      : eol_pop {}
+      : include "statement" ;
+   }
+   
+   : inline_push {
+      regex    \= (^>)
+      styles [] = .punctuation;
+      : eol_pop {}
+      : include "option.text" ;
+   }
+   
+   : include "comment" ;
+   : include "text" ;
+}
+
+statement : context {
+   : inline_push {
+      regex    \= (GOTO\s*)($${__variable})
+      styles [] = .keyword, .variable;
+      : eol_pop {}
+      : include "illegal" ;
+   }
+   
+   : inline_push {
+      regex    \= (IF|ELSEIF|WHILE)
+      styles [] = .keyword;
+      : eol_pop {}
+      : include "expression" ;
+   }
+   
+   : inline_push {
+      regex    \= (ELSE)
+      styles [] = .keyword;
+      : eol_pop {}
+      : include "illegal" ;
+   }
+   
+   : inline_push {
+      regex    \= (?:($${__variable})(\s*=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?))
+      styles [] = .variable, .punctuation, .keyword;
+      : eol_pop {}
+      : include "illegal" ;
+   }
+   
+   : inline_push {
+      regex    \= (?:($${__variable})(\s*=\s*))?(ASK\s*NUMBER\s*FROM\s*)($${__number})(\s*TO\s*)($${__number})
+      styles [] = .variable, .punctuation, .keyword, .number, .keyword, .number;
+      : eol_pop {}
+      : include "illegal" ;
+   }
+   
+   : inline_push {
+      regex    \= ($${__variable})(\s*=\s*)
+      styles [] = .variable, .punctuation;
+      : eol_pop {}
+      : include "expression" ;
+   }
+   
+   : include "illegal" ;
+}
+
+expression : context {
+   : inline_push {
+      regex    \= (\()
+      styles [] = .punctuation;
+      : pop {
+         regex    \= (\))
+         styles [] = .punctuation;
+      }
+      : include "expression" ;
+   }
+   
+   : pattern {
+      regex    \= (NOT|AND|OR)
+      styles [] = .keyword.operator;
+   }
+   
+   : pattern {
+      regex    \= (\+|-|\*|\\|=|!=|>=|>|<=|<)
+      styles [] = .punctuation;
+   }
+   
+   : pattern {
+      regex    \= (\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}Z)?)
+      styles [] = .date;
+   }
+   
+   : pattern {
+      regex    \= ($${__number})
+      styles [] = .number;
+   }
+   
+   : pattern {
+      regex    \= ("(?:\\"|[^"])*"|'(?:\\'|[^'])*')
+      styles [] = .string;
+   }
+   
+   : pattern {
+      regex    \= ($${__variable})
+      styles [] = .variable;
+   }
+   
+   : include "illegal";
+}
+
+comment : context {
+   : pattern {
+      regex    \= (#.*)
+      styles [] = .comment;
+   }
+}
+
+text : context {
+   : pattern {
+      regex    \= ([^\s]+)
+      styles [] = .text;
+   }
+}
+
+option.text : context {
+   : pattern {
+      regex    \= ([^\s]+)
+      styles [] = .option.text;
+   }
+}
+
+illegal : context {
+   : pattern {
+      regex    \= ([^\s]+)
+      styles [] = .illegal;
+   }
+}
+   
+}
