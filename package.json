@@ -14,7 +14,7 @@
         "languages": [{
             "id": "scl",
             "aliases": ["Structured Conversation Language", "scl"],
-            "extensions": [".txt"],
+            "extensions": [".scl"],
             "configuration": "./language-configuration.json"
         }],
         "grammars": [{

@@ -78,14 +78,14 @@ main : context {
 
 block : context {
    : inline_push {
-      regex    \= (^\?)
+      regex    \= (^\s*\?)
       styles [] = .punctuation;
       : eol_pop {}
       : include "statement" ;
    }
    
    : inline_push {
-      regex    \= (^>)
+      regex    \= (^\s*>)
       styles [] = .punctuation;
       : eol_pop {}
       : include "option.text" ;
@@ -193,6 +193,16 @@ comment : context {
 }
 
 text : context {
+   : inline_push {
+      regex    \= (<<)
+      styles [] = .punctuation;
+      : pop {
+         regex    \= (>>)
+         styles [] = .punctuation;
+      }
+      : include "expression" ;
+   }
+   
    : pattern {
       regex    \= ([^\s]+)
       styles [] = .text;
@@ -200,6 +210,16 @@ text : context {
 }
 
 option.text : context {
+   : inline_push {
+      regex    \= (<<)
+      styles [] = .punctuation;
+      : pop {
+         regex    \= (>>)
+         styles [] = .punctuation;
+      }
+      : include "expression" ;
+   }
+   
    : pattern {
       regex    \= ([^\s]+)
       styles [] = .option.text;
