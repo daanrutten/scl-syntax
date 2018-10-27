@@ -63,6 +63,13 @@ main : context {
    }
    
    : inline_push {
+      regex    \= (^PRECONDITION:)
+      styles [] = .keyword;
+      : eol_pop {}
+      : include "expression" ;
+   }
+   
+   : inline_push {
       regex    \= (---)
       styles [] = .punctuation;
       : pop {

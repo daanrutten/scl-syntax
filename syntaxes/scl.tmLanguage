@@ -62,6 +62,35 @@
         </dict>
         <dict>
           <key>begin</key>
+          <string>(^PRECONDITION:)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>keyword.control.scl</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#main__2</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(^(?=.{0,1})(?:|))</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>comment.line.number-sign.scl</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>begin</key>
           <string>(---)</string>
           <key>beginCaptures</key>
           <dict>
@@ -75,7 +104,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#main__2</string>
+              <string>#main__3</string>
             </dict>
            </array>
           <key>end</key>
@@ -311,6 +340,16 @@
        </array>
     </dict>
     <key>main__2</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>include</key>
+          <string>#expression</string>
+        </dict>
+       </array>
+    </dict>
+    <key>main__3</key>
     <dict>
       <key>patterns</key>
       <array> 
