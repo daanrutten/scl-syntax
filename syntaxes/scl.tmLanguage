@@ -28,112 +28,6 @@
       <array> 
         <dict>
           <key>begin</key>
-          <string>(^BLOCK:\s*)([_a-zA-Z0-9]+)</string>
-          <key>beginCaptures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>keyword.control.scl</string>
-            </dict>
-            <key>2</key>
-            <dict>
-              <key>name</key>
-              <string>variable.other.scl</string>
-            </dict>
-          </dict>
-          <key>patterns</key>
-          <array> 
-            <dict>
-              <key>include</key>
-              <string>#main__1</string>
-            </dict>
-           </array>
-          <key>end</key>
-          <string>(^(?=.{0,1})(?:|))</string>
-          <key>endCaptures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>comment.line.number-sign.scl</string>
-            </dict>
-          </dict>
-        </dict>
-        <dict>
-          <key>begin</key>
-          <string>(^PRECONDITION:)</string>
-          <key>beginCaptures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>keyword.control.scl</string>
-            </dict>
-          </dict>
-          <key>patterns</key>
-          <array> 
-            <dict>
-              <key>include</key>
-              <string>#main__2</string>
-            </dict>
-           </array>
-          <key>end</key>
-          <string>(^(?=.{0,1})(?:|))</string>
-          <key>endCaptures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>comment.line.number-sign.scl</string>
-            </dict>
-          </dict>
-        </dict>
-        <dict>
-          <key>begin</key>
-          <string>(---)</string>
-          <key>beginCaptures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>punctuation.scl</string>
-            </dict>
-          </dict>
-          <key>patterns</key>
-          <array> 
-            <dict>
-              <key>include</key>
-              <string>#main__3</string>
-            </dict>
-           </array>
-          <key>end</key>
-          <string>(---)</string>
-          <key>endCaptures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>punctuation.scl</string>
-            </dict>
-          </dict>
-        </dict>
-        <dict>
-          <key>include</key>
-          <string>#comment</string>
-        </dict>
-        <dict>
-          <key>include</key>
-          <string>#illegal</string>
-        </dict>
-       </array>
-    </dict>
-    <key>block</key>
-    <dict>
-      <key>patterns</key>
-      <array> 
-        <dict>
-          <key>begin</key>
           <string>(^\s*\?)</string>
           <key>beginCaptures</key>
           <dict>
@@ -147,7 +41,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#block__1</string>
+              <string>#main__1</string>
             </dict>
            </array>
           <key>end</key>
@@ -176,7 +70,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#block__2</string>
+              <string>#main__2</string>
             </dict>
            </array>
           <key>end</key>
@@ -197,26 +91,6 @@
         <dict>
           <key>include</key>
           <string>#text</string>
-        </dict>
-       </array>
-    </dict>
-    <key>block__1</key>
-    <dict>
-      <key>patterns</key>
-      <array> 
-        <dict>
-          <key>include</key>
-          <string>#statement</string>
-        </dict>
-       </array>
-    </dict>
-    <key>block__2</key>
-    <dict>
-      <key>patterns</key>
-      <array> 
-        <dict>
-          <key>include</key>
-          <string>#option.text</string>
         </dict>
        </array>
     </dict>
@@ -335,7 +209,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#illegal</string>
+          <string>#statement</string>
         </dict>
        </array>
     </dict>
@@ -345,17 +219,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#expression</string>
-        </dict>
-       </array>
-    </dict>
-    <key>main__3</key>
-    <dict>
-      <key>patterns</key>
-      <array> 
-        <dict>
-          <key>include</key>
-          <string>#block</string>
+          <string>#option.text</string>
         </dict>
        </array>
     </dict>
@@ -416,7 +280,7 @@
       <array> 
         <dict>
           <key>begin</key>
-          <string>(GOTO\s*)([_a-zA-Z0-9]+)</string>
+          <string>(BLOCK\s*)([_a-zA-Z0-9]+)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -450,7 +314,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(IF|ELSEIF|WHILE)</string>
+          <string>(PRECONDITION)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -479,6 +343,69 @@
         </dict>
         <dict>
           <key>begin</key>
+          <string>(GOTO\s*)([_a-zA-Z0-9]+)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>keyword.control.scl</string>
+            </dict>
+            <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>variable.other.scl</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#statement__3</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(^(?=.{0,1})(?:|))</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>comment.line.number-sign.scl</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>begin</key>
+          <string>(IF|ELSEIF|WHILE)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>keyword.control.scl</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#statement__4</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(^(?=.{0,1})(?:|))</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>comment.line.number-sign.scl</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>begin</key>
           <string>(ELSE)</string>
           <key>beginCaptures</key>
           <dict>
@@ -492,7 +419,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__3</string>
+              <string>#statement__5</string>
             </dict>
            </array>
           <key>end</key>
@@ -531,7 +458,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__4</string>
+              <string>#statement__6</string>
             </dict>
            </array>
           <key>end</key>
@@ -585,7 +512,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__5</string>
+              <string>#statement__7</string>
             </dict>
            </array>
           <key>end</key>
@@ -619,7 +546,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__6</string>
+              <string>#statement__8</string>
             </dict>
            </array>
           <key>end</key>
@@ -675,7 +602,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#illegal</string>
+          <string>#expression</string>
         </dict>
        </array>
     </dict>
@@ -690,6 +617,26 @@
        </array>
     </dict>
     <key>statement__6</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>include</key>
+          <string>#illegal</string>
+        </dict>
+       </array>
+    </dict>
+    <key>statement__7</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>include</key>
+          <string>#illegal</string>
+        </dict>
+       </array>
+    </dict>
+    <key>statement__8</key>
     <dict>
       <key>patterns</key>
       <array> 

@@ -56,35 +56,6 @@ contexts [] {
 
 main : context {
    : inline_push {
-      regex    \= (^BLOCK:\s*)($${__variable})
-      styles [] = .keyword, .variable;
-      : eol_pop {}
-      : include "illegal" ;
-   }
-   
-   : inline_push {
-      regex    \= (^PRECONDITION:)
-      styles [] = .keyword;
-      : eol_pop {}
-      : include "expression" ;
-   }
-   
-   : inline_push {
-      regex    \= (---)
-      styles [] = .punctuation;
-      : pop {
-         regex    \= (---)
-         styles [] = .punctuation;
-      }
-      : include "block" ;
-   }
-   
-   : include "comment" ;
-   : include "illegal" ;
-}
-
-block : context {
-   : inline_push {
       regex    \= (^\s*\?)
       styles [] = .punctuation;
       : eol_pop {}
@@ -103,6 +74,20 @@ block : context {
 }
 
 statement : context {
+   : inline_push {
+      regex    \= (BLOCK\s*)($${__variable})
+      styles [] = .keyword, .variable;
+      : eol_pop {}
+      : include "illegal" ;
+   }
+   
+   : inline_push {
+      regex    \= (PRECONDITION)
+      styles [] = .keyword;
+      : eol_pop {}
+      : include "expression" ;
+   }
+   
    : inline_push {
       regex    \= (GOTO\s*)($${__variable})
       styles [] = .keyword, .variable;
