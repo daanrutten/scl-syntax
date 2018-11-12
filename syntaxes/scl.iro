@@ -1,7 +1,7 @@
 name                   = scl
 file_extensions []     = txt;
 
-__variable  \= [_a-zA-Z0-9]+ 
+__variable  \= (?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+ 
 __number    \= \d+(?:\.\d*)?
 
 styles [] {
@@ -24,6 +24,10 @@ styles [] {
 
 .keyword.operator : style {
    textmate_scope = keyword.operator
+}
+
+.keyword.constant : style {
+   textmate_scope = constant.language
 }
 
 .variable : style {
@@ -75,7 +79,7 @@ main : context {
 
 statement : context {
    : inline_push {
-      regex    \= (BLOCK\s*)($${__variable})
+      regex    \= (BLOCK\s*)([_a-zA-Z0-9]+)
       styles [] = .keyword, .variable;
       : eol_pop {}
       : include "illegal" ;
@@ -110,21 +114,21 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (?:($${__variable})(\s*=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?))
+      regex    \= (?:($${__variable})(\s*\??=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?))
       styles [] = .variable, .punctuation, .keyword;
       : eol_pop {}
       : include "illegal" ;
    }
    
    : inline_push {
-      regex    \= (?:($${__variable})(\s*=\s*))?(ASK\s*NUMBER\s*FROM\s*)($${__number})(\s*TO\s*)($${__number})
+      regex    \= (?:($${__variable})(\s*\??=\s*))?(ASK\s*NUMBER\s*FROM\s*)($${__number})(\s*TO\s*)($${__number})
       styles [] = .variable, .punctuation, .keyword, .number, .keyword, .number;
       : eol_pop {}
       : include "illegal" ;
    }
    
    : inline_push {
-      regex    \= ($${__variable})(\s*=\s*)
+      regex    \= ($${__variable})(\s*\??=\s*)
       styles [] = .variable, .punctuation;
       : eol_pop {}
       : include "expression" ;
@@ -167,6 +171,11 @@ expression : context {
    : pattern {
       regex    \= ("(?:\\"|[^"])*"|'(?:\\'|[^'])*')
       styles [] = .string;
+   }
+   
+   : pattern {
+      regex    \= (NULL|ONCE)
+      styles [] = .keyword.constant;
    }
    
    : pattern {
