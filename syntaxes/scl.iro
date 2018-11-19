@@ -121,7 +121,7 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (?:($${__variable})(\s*\??=\s*))?(ASK\s*NUMBER\s*FROM\s*)($${__number})(\s*TO\s*)($${__number})
+      regex    \= (?:($${__variable})(\s*\??=\s*))?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)($${__number})(\s*TO\s*)($${__number})
       styles [] = .variable, .punctuation, .keyword, .number, .keyword, .number;
       : eol_pop {}
       : include "illegal" ;
@@ -148,13 +148,23 @@ expression : context {
       : include "expression" ;
    }
    
+   : inline_push {
+      regex    \= (\[)
+      styles [] = .punctuation;
+      : pop {
+         regex    \= (\])
+         styles [] = .punctuation;
+      }
+      : include "expression" ;
+   }
+   
    : pattern {
       regex    \= (NOT|AND|OR)
       styles [] = .keyword.operator;
    }
    
    : pattern {
-      regex    \= (\+|-|\*|\\|=|!=|>=|>|<=|<)
+      regex    \= (\+|-|\*|\\|%|=|!=|>=|>|<=|<|,)
       styles [] = .punctuation;
    }
    

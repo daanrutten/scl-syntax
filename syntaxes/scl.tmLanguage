@@ -140,6 +140,35 @@
           </dict>
         </dict>
         <dict>
+          <key>begin</key>
+          <string>(\[)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.scl</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#expression__2</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(\])</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.scl</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
           <key>match</key>
           <string>(NOT|AND|OR)</string>
           <key>name</key>
@@ -147,7 +176,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(\+|-|\*|\\|=|!=|&gt;=|&gt;|&lt;=|&lt;)</string>
+          <string>(\+|-|\*|\\|%|=|!=|&gt;=|&gt;|&lt;=|&lt;|,)</string>
           <key>name</key>
           <string>punctuation.scl</string>
         </dict>
@@ -188,6 +217,16 @@
        </array>
     </dict>
     <key>expression__1</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>include</key>
+          <string>#expression</string>
+        </dict>
+       </array>
+    </dict>
+    <key>expression__2</key>
     <dict>
       <key>patterns</key>
       <array> 
@@ -480,7 +519,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*\??=\s*))?(ASK\s*NUMBER\s*FROM\s*)(\d+(?:\.\d*)?)(\s*TO\s*)(\d+(?:\.\d*)?)</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*\??=\s*))?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)(\d+(?:\.\d*)?)(\s*TO\s*)(\d+(?:\.\d*)?)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
