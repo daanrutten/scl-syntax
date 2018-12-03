@@ -164,7 +164,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (\+|-|\*|\\|%|=|!=|>=|>|<=|<|,)
+      regex    \= (\+|-|\*|/|%|=|!=|>=|>|<=|<|,)
       styles [] = .punctuation;
    }
    

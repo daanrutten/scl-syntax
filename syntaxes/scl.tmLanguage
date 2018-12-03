@@ -176,7 +176,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(\+|-|\*|\\|%|=|!=|&gt;=|&gt;|&lt;=|&lt;|,)</string>
+          <string>(\+|-|\*|/|%|=|!=|&gt;=|&gt;|&lt;=|&lt;|,)</string>
           <key>name</key>
           <string>punctuation.scl</string>
         </dict>
