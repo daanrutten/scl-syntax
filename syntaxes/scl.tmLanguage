@@ -388,7 +388,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(GOTO\s*)((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)</string>
+          <string>(INSERT\s*)((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -422,13 +422,18 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(IF|ELSEIF|WHILE)</string>
+          <string>(SHOW\s*)([_a-zA-Z0-9]+)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
             <dict>
               <key>name</key>
               <string>keyword.control.scl</string>
+            </dict>
+            <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>variable.other.scl</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -451,7 +456,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(ELSE)</string>
+          <string>(IF|ELSEIF|WHILE)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -480,7 +485,36 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*\??=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?))</string>
+          <string>(ELSE)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>keyword.control.scl</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#statement__6</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(^(?=.{0,1})(?:|))</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>comment.line.number-sign.scl</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>begin</key>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*\??=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -503,7 +537,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__6</string>
+              <string>#statement__7</string>
             </dict>
            </array>
           <key>end</key>
@@ -557,7 +591,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__7</string>
+              <string>#statement__8</string>
             </dict>
            </array>
           <key>end</key>
@@ -591,7 +625,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__8</string>
+              <string>#statement__9</string>
             </dict>
            </array>
           <key>end</key>
@@ -647,7 +681,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#expression</string>
+          <string>#illegal</string>
         </dict>
        </array>
     </dict>
@@ -657,7 +691,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#illegal</string>
+          <string>#expression</string>
         </dict>
        </array>
     </dict>
@@ -682,6 +716,16 @@
        </array>
     </dict>
     <key>statement__8</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>include</key>
+          <string>#illegal</string>
+        </dict>
+       </array>
+    </dict>
+    <key>statement__9</key>
     <dict>
       <key>patterns</key>
       <array> 

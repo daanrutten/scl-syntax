@@ -93,7 +93,14 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (GOTO\s*)($${__variable})
+      regex    \= (INSERT\s*)($${__variable})
+      styles [] = .keyword, .variable;
+      : eol_pop {}
+      : include "illegal" ;
+   }
+   
+   : inline_push {
+      regex    \= (SHOW\s*)([_a-zA-Z0-9]+)
       styles [] = .keyword, .variable;
       : eol_pop {}
       : include "illegal" ;
@@ -114,7 +121,7 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (?:($${__variable})(\s*\??=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?))
+      regex    \= (?:($${__variable})(\s*\??=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))
       styles [] = .variable, .punctuation, .keyword;
       : eol_pop {}
       : include "illegal" ;
