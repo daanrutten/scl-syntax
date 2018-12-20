@@ -170,7 +170,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(NOT|AND|OR)</string>
+          <string>(NOT|AND|OR|DATE|LATEST|MAX|MIN|SUM|MEAN|LENGTH)</string>
           <key>name</key>
           <string>keyword.operator.scl</string>
         </dict>
@@ -200,7 +200,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(NULL|ONCE)</string>
+          <string>(NULL|ONCE|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)</string>
           <key>name</key>
           <string>constant.language.scl</string>
         </dict>
@@ -514,7 +514,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*\??=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -553,7 +553,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*\??=\s*))?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)(\d+(?:\.\d*)?)(\s*TO\s*)(\d+(?:\.\d*)?)</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*:?=\s*))?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)(\d+(?:\.\d*)?)(\s*TO\s*)(\d+(?:\.\d*)?)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -607,7 +607,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*\??=\s*)</string>
+          <string>((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*:?=\s*)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>

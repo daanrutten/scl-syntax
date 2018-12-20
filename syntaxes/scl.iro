@@ -121,21 +121,21 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (?:($${__variable})(\s*\??=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))
+      regex    \= (?:($${__variable})(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))
       styles [] = .variable, .punctuation, .keyword;
       : eol_pop {}
       : include "illegal" ;
    }
    
    : inline_push {
-      regex    \= (?:($${__variable})(\s*\??=\s*))?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)($${__number})(\s*TO\s*)($${__number})
+      regex    \= (?:($${__variable})(\s*:?=\s*))?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)($${__number})(\s*TO\s*)($${__number})
       styles [] = .variable, .punctuation, .keyword, .number, .keyword, .number;
       : eol_pop {}
       : include "illegal" ;
    }
    
    : inline_push {
-      regex    \= ($${__variable})(\s*\??=\s*)
+      regex    \= ($${__variable})(\s*:?=\s*)
       styles [] = .variable, .punctuation;
       : eol_pop {}
       : include "expression" ;
@@ -166,7 +166,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (NOT|AND|OR)
+      regex    \= (NOT|AND|OR|DATE|LATEST|MAX|MIN|SUM|MEAN|LENGTH)
       styles [] = .keyword.operator;
    }
    
@@ -191,7 +191,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (NULL|ONCE)
+      regex    \= (NULL|ONCE|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
       styles [] = .keyword.constant;
    }
    
