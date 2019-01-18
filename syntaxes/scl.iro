@@ -3,6 +3,7 @@ file_extensions []     = txt;
 
 __variable  \= (?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+ 
 __number    \= \d+(?:\.\d*)?
+__assignment \= (?:($${__variable})((?:\[.*?\])*)(\s*:?=\s*))
 
 styles [] {
 
@@ -121,22 +122,22 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (?:($${__variable})(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))
-      styles [] = .variable, .punctuation, .keyword;
+      regex    \= $${__assignment}?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))
+      styles [] = .variable, .punctuation, .punctuation, .keyword;
       : eol_pop {}
       : include "illegal" ;
    }
    
    : inline_push {
-      regex    \= (?:($${__variable})(\s*:?=\s*))?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)($${__number})(\s*TO\s*)($${__number})
-      styles [] = .variable, .punctuation, .keyword, .number, .keyword, .number;
+      regex    \= $${__assignment}?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)($${__number})(\s*TO\s*)($${__number})
+      styles [] = .variable, .punctuation, .punctuation, .keyword, .number, .keyword, .number;
       : eol_pop {}
       : include "illegal" ;
    }
    
    : inline_push {
-      regex    \= ($${__variable})(\s*:?=\s*)
-      styles [] = .variable, .punctuation;
+      regex    \= $${__assignment}
+      styles [] = .variable, .punctuation, .punctuation;
       : eol_pop {}
       : include "expression" ;
    }
@@ -166,7 +167,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (NOT|AND|OR|DATE|LATEST|MAX|MIN|SUM|MEAN|LENGTH)
+      regex    \= (NOT|AND|OR|DATE|LATEST|MAX|MIN|SUM|MEAN|LENGTH|AS)
       styles [] = .keyword.operator;
    }
    

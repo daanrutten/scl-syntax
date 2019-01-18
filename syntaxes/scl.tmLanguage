@@ -170,7 +170,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(NOT|AND|OR|DATE|LATEST|MAX|MIN|SUM|MEAN|LENGTH)</string>
+          <string>(NOT|AND|OR|DATE|LATEST|MAX|MIN|SUM|MEAN|LENGTH|AS)</string>
           <key>name</key>
           <string>keyword.operator.scl</string>
         </dict>
@@ -514,7 +514,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -528,6 +528,11 @@
               <string>punctuation.scl</string>
             </dict>
             <key>3</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.scl</string>
+            </dict>
+            <key>4</key>
             <dict>
               <key>name</key>
               <string>keyword.control.scl</string>
@@ -553,7 +558,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*:?=\s*))?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)(\d+(?:\.\d*)?)(\s*TO\s*)(\d+(?:\.\d*)?)</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)(\d+(?:\.\d*)?)(\s*TO\s*)(\d+(?:\.\d*)?)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -569,19 +574,24 @@
             <key>3</key>
             <dict>
               <key>name</key>
-              <string>keyword.control.scl</string>
+              <string>punctuation.scl</string>
             </dict>
             <key>4</key>
             <dict>
               <key>name</key>
-              <string>constant.numeric.scl</string>
+              <string>keyword.control.scl</string>
             </dict>
             <key>5</key>
             <dict>
               <key>name</key>
-              <string>keyword.control.scl</string>
+              <string>constant.numeric.scl</string>
             </dict>
             <key>6</key>
+            <dict>
+              <key>name</key>
+              <string>keyword.control.scl</string>
+            </dict>
+            <key>7</key>
             <dict>
               <key>name</key>
               <string>constant.numeric.scl</string>
@@ -607,7 +617,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)(\s*:?=\s*)</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -616,6 +626,11 @@
               <string>variable.other.scl</string>
             </dict>
             <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.scl</string>
+            </dict>
+            <key>3</key>
             <dict>
               <key>name</key>
               <string>punctuation.scl</string>
