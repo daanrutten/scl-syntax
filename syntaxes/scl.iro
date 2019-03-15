@@ -87,13 +87,6 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (PRECONDITION)
-      styles [] = .keyword;
-      : eol_pop {}
-      : include "expression" ;
-   }
-   
-   : inline_push {
       regex    \= (INSERT\s*)($${__variable})
       styles [] = .keyword, .variable;
       : eol_pop {}
@@ -102,6 +95,13 @@ statement : context {
    
    : inline_push {
       regex    \= (SHOW\s*)([_a-zA-Z0-9]+)
+      styles [] = .keyword, .variable;
+      : eol_pop {}
+      : include "illegal" ;
+   }
+   
+   : inline_push {
+      regex    \= (WATCH\s*)((?:https?:\/\/)?(?:www.)?youtu(?:be)?.[a-z]{2,6}\/watch\?v=(?:[-_a-zA-Z0-9]+))
       styles [] = .keyword, .variable;
       : eol_pop {}
       : include "illegal" ;
@@ -129,10 +129,10 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= $${__assignment}?(ASK\s*(?:INTEGER|REAL)\s*FROM\s*)($${__number})(\s*TO\s*)($${__number})
-      styles [] = .variable, .punctuation, .punctuation, .keyword, .number, .keyword, .number;
+      regex    \= $${__assignment}?(ASK\s*(?:INTEGER|REAL))
+      styles [] = .variable, .punctuation, .punctuation, .keyword;
       : eol_pop {}
-      : include "illegal" ;
+      : include "expression" ;
    }
    
    : inline_push {
@@ -166,13 +166,23 @@ expression : context {
       : include "expression" ;
    }
    
+   : inline_push {
+      regex    \= (\{)
+      styles [] = .punctuation;
+      : pop {
+         regex    \= (\})
+         styles [] = .punctuation;
+      }
+      : include "expression" ;
+   }
+   
    : pattern {
       regex    \= (NOT|AND|OR|DATE|LATEST|MAX|MIN|SUM|MEAN|LENGTH|AS)
       styles [] = .keyword.operator;
    }
    
    : pattern {
-      regex    \= (\+|-|\*|/|%|=|!=|>=|>|<=|<|,)
+      regex    \= (\+|-|\*|/|%|=|!=|>=|>|<=|<|:|,)
       styles [] = .punctuation;
    }
    
