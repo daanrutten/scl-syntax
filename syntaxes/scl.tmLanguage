@@ -199,7 +199,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(NOT|AND|OR|DATE|LATEST|MAX|MIN|SUM|MEAN|LENGTH|AS)</string>
+          <string>(AND|OR|WHERE|AS|NOT|DATE|LENGTH|LATEST|MAX|MIN|SUM|MEAN)</string>
           <key>name</key>
           <string>keyword.operator.scl</string>
         </dict>
@@ -229,7 +229,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(NULL|ONCE|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)</string>
+          <string>(NULL|ONCE|THIS|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)</string>
           <key>name</key>
           <string>constant.language.scl</string>
         </dict>
@@ -646,6 +646,55 @@
         </dict>
         <dict>
           <key>begin</key>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))(FETCH\\s*)((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+(?:\\s*,\\s*(?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)*)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>variable.other.scl</string>
+            </dict>
+            <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.scl</string>
+            </dict>
+            <key>3</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.scl</string>
+            </dict>
+            <key>4</key>
+            <dict>
+              <key>name</key>
+              <string>keyword.control.scl</string>
+            </dict>
+            <key>5</key>
+            <dict>
+              <key>name</key>
+              <string>variable.other.scl</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#statement__9</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(^(?=.{0,1})(?:|))</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>comment.line.number-sign.scl</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>begin</key>
           <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))</string>
           <key>beginCaptures</key>
           <dict>
@@ -669,7 +718,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__9</string>
+              <string>#statement__10</string>
             </dict>
            </array>
           <key>end</key>
@@ -696,6 +745,16 @@
         <dict>
           <key>include</key>
           <string>#illegal</string>
+        </dict>
+       </array>
+    </dict>
+    <key>statement__10</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>include</key>
+          <string>#expression</string>
         </dict>
        </array>
     </dict>
@@ -775,7 +834,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#expression</string>
+          <string>#illegal</string>
         </dict>
        </array>
     </dict>

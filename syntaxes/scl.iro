@@ -136,6 +136,13 @@ statement : context {
    }
    
    : inline_push {
+      regex    \= $${__assignment}(FETCH\\s*)((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+(?:\\s*,\\s*(?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)*)
+      styles [] = .variable, .punctuation, .punctuation, .keyword, .variable;
+      : eol_pop {}
+      : include "illegal" ;
+   }
+   
+   : inline_push {
       regex    \= $${__assignment}
       styles [] = .variable, .punctuation, .punctuation;
       : eol_pop {}
@@ -177,7 +184,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (NOT|AND|OR|DATE|LATEST|MAX|MIN|SUM|MEAN|LENGTH|AS)
+      regex    \= (AND|OR|WHERE|AS|NOT|DATE|LENGTH|LATEST|MAX|MIN|SUM|MEAN)
       styles [] = .keyword.operator;
    }
    
@@ -202,7 +209,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (NULL|ONCE|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
+      regex    \= (NULL|ONCE|THIS|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
       styles [] = .keyword.constant;
    }
    
