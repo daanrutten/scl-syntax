@@ -122,14 +122,14 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= $${__assignment}?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))
+      regex    \= $${__assignment}?(ASK\s*ANSWERS?\s*(?:SHOW)?)
       styles [] = .variable, .punctuation, .punctuation, .keyword;
       : eol_pop {}
       : include "illegal" ;
    }
    
    : inline_push {
-      regex    \= $${__assignment}?(ASK\s*(?:INTEGER|REAL))
+      regex    \= $${__assignment}?(ASK\s*(?:TEXT|DATE|NUMBER))
       styles [] = .variable, .punctuation, .punctuation, .keyword;
       : eol_pop {}
       : include "expression" ;

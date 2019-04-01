@@ -558,7 +558,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|ANSWERS?\s*(?:SHOW)?))</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*ANSWERS?\s*(?:SHOW)?)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -602,7 +602,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*(?:INTEGER|REAL))</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|NUMBER))</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
