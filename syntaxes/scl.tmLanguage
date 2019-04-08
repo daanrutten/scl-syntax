@@ -199,7 +199,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(AND|OR|WHERE|AS|NOT|DATE|LENGTH|LATEST|MAX|MIN|SUM|MEAN)</string>
+          <string>(AND|OR|WHERE|AS|NOT|DATE|LENGTH|LOWER|UPPER|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|JOIN)</string>
           <key>name</key>
           <string>keyword.operator.scl</string>
         </dict>
@@ -646,7 +646,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))(FETCH\\s*)((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+(?:\\s*,\\s*(?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)*)</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))(FETCH\\s*)((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+(?:\\s*,\\s*(?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)*?)((?:\\s*OF)?)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -673,6 +673,11 @@
             <dict>
               <key>name</key>
               <string>variable.other.scl</string>
+            </dict>
+            <key>6</key>
+            <dict>
+              <key>name</key>
+              <string>keyword.control.scl</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -834,7 +839,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#illegal</string>
+          <string>#expression</string>
         </dict>
        </array>
     </dict>
