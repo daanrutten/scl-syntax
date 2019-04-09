@@ -108,7 +108,7 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (IF|ELSEIF|WHILE)
+      regex    \= (IF|ELSEIF|WHILE|SWITCH)
       styles [] = .keyword;
       : eol_pop {}
       : include "expression" ;

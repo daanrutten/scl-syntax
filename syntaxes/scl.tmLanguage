@@ -500,7 +500,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(IF|ELSEIF|WHILE)</string>
+          <string>(IF|ELSEIF|WHILE|SWITCH)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
