@@ -184,7 +184,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (AND|OR|WHERE|AS|NOT|DATE|LENGTH|LOWER|UPPER|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|JOIN)
+      regex    \= (AND|OR|WHERE|MAP|AS|NOT|DATE|LENGTH|LOWER|UPPER|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|JOIN)
       styles [] = .keyword.operator;
    }
    
@@ -209,7 +209,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (NULL|ONCE|THIS|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
+      regex    \= (NULL|ONCE|THIS|INDEX|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
       styles [] = .keyword.constant;
    }
    
