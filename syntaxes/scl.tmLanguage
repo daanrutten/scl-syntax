@@ -646,7 +646,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))(FETCH\\s*)((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+(?:\\s*,\\s*(?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)*?)((?:\\s*OF)?)</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))(FETCH\s*)((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+(?:\s*,\s*(?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)*)((?:\s*OF)?)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>

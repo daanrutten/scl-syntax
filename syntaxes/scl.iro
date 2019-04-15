@@ -136,7 +136,7 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= $${__assignment}(FETCH\\s*)((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+(?:\\s*,\\s*(?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)*?)((?:\\s*OF)?)
+      regex    \= $${__assignment}(FETCH\s*)((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+(?:\s*,\s*(?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)*)((?:\s*OF)?)
       styles [] = .variable, .punctuation, .punctuation, .keyword, .variable, .keyword;
       : eol_pop {}
       : include "expression" ;
