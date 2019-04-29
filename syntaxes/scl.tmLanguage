@@ -229,7 +229,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(NULL|ONCE|THIS|INDEX|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)</string>
+          <string>(NULL|ONCE|THIS|INDEX|ID|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)</string>
           <key>name</key>
           <string>constant.language.scl</string>
         </dict>
@@ -432,7 +432,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(SHOW\s*)([_a-zA-Z0-9]+)</string>
+          <string>(SHOW|WATCH|LISTEN)(.*)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -466,40 +466,6 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(WATCH\s*)((?:https?:\/\/)?(?:www.)?youtu(?:be)?.[a-z]{2,6}\/watch\?v=(?:[-_a-zA-Z0-9]+))</string>
-          <key>beginCaptures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>keyword.control.scl</string>
-            </dict>
-            <key>2</key>
-            <dict>
-              <key>name</key>
-              <string>variable.other.scl</string>
-            </dict>
-          </dict>
-          <key>patterns</key>
-          <array> 
-            <dict>
-              <key>include</key>
-              <string>#statement__4</string>
-            </dict>
-           </array>
-          <key>end</key>
-          <string>(^(?=.{0,1})(?:|))</string>
-          <key>endCaptures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>comment.line.number-sign.scl</string>
-            </dict>
-          </dict>
-        </dict>
-        <dict>
-          <key>begin</key>
           <string>(IF|ELSEIF|WHILE|SWITCH)</string>
           <key>beginCaptures</key>
           <dict>
@@ -513,7 +479,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__5</string>
+              <string>#statement__4</string>
             </dict>
            </array>
           <key>end</key>
@@ -542,7 +508,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__6</string>
+              <string>#statement__5</string>
             </dict>
            </array>
           <key>end</key>
@@ -586,7 +552,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__7</string>
+              <string>#statement__6</string>
             </dict>
            </array>
           <key>end</key>
@@ -630,7 +596,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__8</string>
+              <string>#statement__7</string>
             </dict>
            </array>
           <key>end</key>
@@ -684,7 +650,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__9</string>
+              <string>#statement__8</string>
             </dict>
            </array>
           <key>end</key>
@@ -723,7 +689,7 @@
           <array> 
             <dict>
               <key>include</key>
-              <string>#statement__10</string>
+              <string>#statement__9</string>
             </dict>
            </array>
           <key>end</key>
@@ -753,16 +719,6 @@
         </dict>
        </array>
     </dict>
-    <key>statement__10</key>
-    <dict>
-      <key>patterns</key>
-      <array> 
-        <dict>
-          <key>include</key>
-          <string>#expression</string>
-        </dict>
-       </array>
-    </dict>
     <key>statement__2</key>
     <dict>
       <key>patterns</key>
@@ -789,7 +745,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#illegal</string>
+          <string>#expression</string>
         </dict>
        </array>
     </dict>
@@ -799,7 +755,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#expression</string>
+          <string>#illegal</string>
         </dict>
        </array>
     </dict>
@@ -809,7 +765,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#illegal</string>
+          <string>#expression</string>
         </dict>
        </array>
     </dict>
@@ -819,7 +775,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#illegal</string>
+          <string>#expression</string>
         </dict>
        </array>
     </dict>

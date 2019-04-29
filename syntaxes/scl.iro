@@ -94,14 +94,7 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (SHOW\s*)([_a-zA-Z0-9]+)
-      styles [] = .keyword, .variable;
-      : eol_pop {}
-      : include "illegal" ;
-   }
-   
-   : inline_push {
-      regex    \= (WATCH\s*)((?:https?:\/\/)?(?:www.)?youtu(?:be)?.[a-z]{2,6}\/watch\?v=(?:[-_a-zA-Z0-9]+))
+      regex    \= (SHOW|WATCH|LISTEN)(.*)
       styles [] = .keyword, .variable;
       : eol_pop {}
       : include "illegal" ;
@@ -125,7 +118,7 @@ statement : context {
       regex    \= $${__assignment}?(ASK\s*ANSWERS?\s*(?:SHOW)?)
       styles [] = .variable, .punctuation, .punctuation, .keyword;
       : eol_pop {}
-      : include "illegal" ;
+      : include "expression" ;
    }
    
    : inline_push {
@@ -209,7 +202,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (NULL|ONCE|THIS|INDEX|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
+      regex    \= (NULL|ONCE|THIS|INDEX|ID|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
       styles [] = .keyword.constant;
    }
    
