@@ -432,18 +432,13 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(SHOW|WATCH|LISTEN)(.*)</string>
+          <string>(SHOW|WATCH|LISTEN|GRAPH|SET)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
             <dict>
               <key>name</key>
               <string>keyword.control.scl</string>
-            </dict>
-            <key>2</key>
-            <dict>
-              <key>name</key>
-              <string>variable.other.scl</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -735,7 +730,7 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#illegal</string>
+          <string>#expression</string>
         </dict>
        </array>
     </dict>

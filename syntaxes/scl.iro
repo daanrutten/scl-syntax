@@ -94,10 +94,10 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (SHOW|WATCH|LISTEN)(.*)
-      styles [] = .keyword, .variable;
+      regex    \= (SHOW|WATCH|LISTEN|GRAPH|SET)
+      styles [] = .keyword;
       : eol_pop {}
-      : include "illegal" ;
+      : include "expression" ;
    }
    
    : inline_push {
