@@ -432,7 +432,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(SHOW|WATCH|LISTEN|GRAPH|SET)</string>
+          <string>(SHOW|WATCH|LISTEN|GRAPH|SET|SEND)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -563,7 +563,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|NUMBER))</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|NUMBER|IMAGE|VIDEO|AUDIO))</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>

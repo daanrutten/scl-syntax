@@ -94,7 +94,7 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (SHOW|WATCH|LISTEN|GRAPH|SET)
+      regex    \= (SHOW|WATCH|LISTEN|GRAPH|SET|SEND)
       styles [] = .keyword;
       : eol_pop {}
       : include "expression" ;
@@ -122,7 +122,7 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= $${__assignment}?(ASK\s*(?:TEXT|DATE|NUMBER))
+      regex    \= $${__assignment}?(ASK\s*(?:TEXT|DATE|NUMBER|IMAGE|VIDEO|AUDIO))
       styles [] = .variable, .punctuation, .punctuation, .keyword;
       : eol_pop {}
       : include "expression" ;
