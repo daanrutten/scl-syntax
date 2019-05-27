@@ -177,7 +177,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (AND|OR|WHERE|MAP|AS|NOT|DATE|LENGTH|LOWER|UPPER|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|JOIN)
+      regex    \= (AND|OR|WHERE|MAP|FIND|MATCH|AS|NOT|DATE|LENGTH|LOWER|UPPER|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|JOIN)
       styles [] = .keyword.operator;
    }
    

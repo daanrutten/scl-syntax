@@ -199,7 +199,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(AND|OR|WHERE|MAP|AS|NOT|DATE|LENGTH|LOWER|UPPER|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|JOIN)</string>
+          <string>(AND|OR|WHERE|MAP|FIND|MATCH|AS|NOT|DATE|LENGTH|LOWER|UPPER|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|JOIN)</string>
           <key>name</key>
           <string>keyword.operator.scl</string>
         </dict>
