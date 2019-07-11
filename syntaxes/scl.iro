@@ -87,17 +87,24 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (INSERT\s*)($${__variable})
-      styles [] = .keyword, .variable;
-      : eol_pop {}
-      : include "illegal" ;
-   }
-   
-   : inline_push {
-      regex    \= (SHOW|WATCH|LISTEN|GRAPH|SET|SEND)
+      regex    \= (INSERT)
       styles [] = .keyword;
       : eol_pop {}
       : include "expression" ;
+   }
+   
+   : inline_push {
+      regex    \= (SHOW|WATCH|LISTEN|DELETE|GRAPH|SET|SEND|GET|POST|DRAW|READ)
+      styles [] = .keyword;
+      : eol_pop {}
+      : include "expression" ;
+   }
+   
+   : inline_push {
+      regex    \= (LOG\s*IN)
+      styles [] = .keyword;
+      : eol_pop {}
+      : include "illegal" ;
    }
    
    : inline_push {
@@ -122,7 +129,7 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= $${__assignment}?(ASK\s*(?:TEXT|DATE|NUMBER|IMAGE|VIDEO|AUDIO))
+      regex    \= $${__assignment}?(ASK\s*(?:TEXT|DATE|NUMBER|IMAGE|VIDEO|AUDIO|URL))
       styles [] = .variable, .punctuation, .punctuation, .keyword;
       : eol_pop {}
       : include "expression" ;
@@ -202,7 +209,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (NULL|ONCE|THIS|INDEX|ID|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
+      regex    \= (NULL|ONCE|THIS|INDEX|IP|OS|ID|ANONYMOUS|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
       styles [] = .keyword.constant;
    }
    
