@@ -427,7 +427,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(SHOW|WATCH|LISTEN|DELETE|GRAPH|SET|SEND|GET|POST|DRAW|READ)</string>
+          <string>(SHOW|WATCH|LISTEN|DELETE|GRAPH|SET|SEND|GET|POST|DRAW|PAINT|READ)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>

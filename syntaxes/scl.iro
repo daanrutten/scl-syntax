@@ -94,7 +94,7 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (SHOW|WATCH|LISTEN|DELETE|GRAPH|SET|SEND|GET|POST|DRAW|READ)
+      regex    \= (SHOW|WATCH|LISTEN|DELETE|GRAPH|SET|SEND|GET|POST|DRAW|PAINT|READ)
       styles [] = .keyword;
       : eol_pop {}
       : include "expression" ;
