@@ -2,7 +2,7 @@
     "name": "scl",
     "displayName": "SCL",
     "description": "Structured Conversation Language",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "publisher": "daanrutten",
     "engines": {
         "vscode": "^1.27.0"
