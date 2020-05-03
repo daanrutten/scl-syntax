@@ -87,21 +87,14 @@ statement : context {
    }
    
    : inline_push {
-      regex    \= (INSERT)
+      regex    \= (INSERT|SHOW|WATCH|LISTEN|DELETE|GRAPH|SET|SEND|BUTTON|GET|POST|PUT|ACCOUNT|DRAW|PAINT|READ|GRAYLOG)
       styles [] = .keyword;
       : eol_pop {}
       : include "expression" ;
    }
    
    : inline_push {
-      regex    \= (SHOW|WATCH|LISTEN|DELETE|GRAPH|SET|SEND|GET|POST|DRAW|PAINT|READ)
-      styles [] = .keyword;
-      : eol_pop {}
-      : include "expression" ;
-   }
-   
-   : inline_push {
-      regex    \= (LOG\s*IN)
+      regex    \= (LOG\s*IN|LOG\s*OUT)
       styles [] = .keyword;
       : eol_pop {}
       : include "illegal" ;
@@ -184,7 +177,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (AND|OR|WHERE|MAP|FIND|MATCH|AS|NOT|DATE|LENGTH|LOWER|UPPER|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|JOIN)
+      regex    \= (AND|OR|WHERE|MAP|FIND|MATCH|AS|NOT|DATE|LENGTH|FLAT|LOWER|UPPER|PARSE|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|JOIN)
       styles [] = .keyword.operator;
    }
    
@@ -209,7 +202,7 @@ expression : context {
    }
    
    : pattern {
-      regex    \= (NULL|ONCE|THIS|INDEX|IP|OS|ID|ANONYMOUS|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
+      regex    \= (NULL|ONCE|THIS|INDEX|IP|OS|URL|ID|UID|NAME|EMAIL|PROVIDER|ANONYMOUS|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)
       styles [] = .keyword.constant;
    }
    
