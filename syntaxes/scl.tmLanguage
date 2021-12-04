@@ -199,7 +199,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(AND|OR|WHERE|MAP|FIND|MATCH|AS|NOT|DATE|LENGTH|FLAT|LOWER|UPPER|PARSE|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|JOIN)</string>
+          <string>(AND|OR|WHERE|MAP|FIND|MATCH|AS|NOT|DATE|LENGTH|FLAT|LOWER|UPPER|PARSE|STRINGIFY|DECODE|ENCODE|KEYS|LATEST|MAX|MIN|SUM|MEAN|SORT|GROUP|TYPEOF|JOIN)</string>
           <key>name</key>
           <string>keyword.operator.scl</string>
         </dict>
@@ -229,7 +229,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(NULL|ONCE|THIS|INDEX|IP|OS|URL|ID|UID|NAME|EMAIL|PROVIDER|ANONYMOUS|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)</string>
+          <string>(NULL|ONCE|THIS|INDEX|IP|OS|BROWSER|URL|TIMEZONE|QRYPARAMS|ID|UID|NAME|MFA|EMAIL|PROVIDER|ANONYMOUS|NOW|TODAY|DAYS|HOURS|MINUTES|SECONDS)</string>
           <key>name</key>
           <string>constant.language.scl</string>
         </dict>
@@ -398,7 +398,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(INSERT|SHOW|WATCH|LISTEN|DELETE|GRAPH|SET|SEND|BUTTON|GET|POST|PUT|ACCOUNT|DRAW|PAINT|READ|GRAYLOG)</string>
+          <string>(INSERT|SHOW|WATCH|LISTEN|DELETE|GRAPH|SET|SEND|SENDMAIL|BUTTON|GET|POST|PUT|FORMAT|ACCOUNT|FILEID|DRAW|PAINT|READ|GRAYLOG|RESTART|LOG\s*IN|LOG\s*OUT)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -427,7 +427,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(LOG\s*IN|LOG\s*OUT)</string>
+          <string>(RECAPTCHA)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -514,7 +514,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*ANSWERS?\s*(?:SHOW)?)</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*(?:MAP|ANSWERS?)\s*(?:SHOW)?)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -558,7 +558,7 @@
         </dict>
         <dict>
           <key>begin</key>
-          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|NUMBER|IMAGE|VIDEO|AUDIO|URL))</string>
+          <string>(?:((?:[_a-zA-Z0-9]+:)?[_a-zA-Z0-9]+)((?:\[.*?\])*)(\s*:?=\s*))?(ASK\s*(?:TEXT|DATE|TIME|NUMBER|IMAGE|VIDEO|AUDIO|URL|QR))</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
